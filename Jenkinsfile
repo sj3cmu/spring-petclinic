@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('petclinic_analysis')
+        SONAR_TOKEN = credentials('Petclinic-Analysis')
     }
 
     stages {
