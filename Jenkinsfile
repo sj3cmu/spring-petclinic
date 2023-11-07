@@ -3,14 +3,15 @@ pipeline {
 
     environment {
         SONAR_TOKEN = credentials('petclinic_analysis')
+        GITHUB_CREDENTIALS = credentials('sj3cmu') // Replace 'github' with the correct credentials ID
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                    // Check out the source code from your repository
-                    checkout scm
+                    // Check out the source code from your repository using GitHub credentials
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git', credentialsId: 'github']]) // Replace 'github' with the correct credentials ID
                 }
             }
         }
@@ -19,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Build the project (you may need to adjust the build command)
-                    sh 'mvn clean package'  // Replace with your build command
+                    sh 'mvn clean package' // Replace with your build command
                 }
             }
         }
