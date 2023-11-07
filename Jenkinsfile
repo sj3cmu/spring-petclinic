@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Code Checkout Stage') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git']]])
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube Static Analysis Stage') {
             steps {
                 script {
                     def scannerHome = tool 'SonarQube'
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Stage') {
             steps {
                 sh './mvnw package -DskipTests' 
             }
