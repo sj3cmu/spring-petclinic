@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Check out the source code from your repository using GitHub credentials
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git', credentialsId: 'github']]) // Replace 'github' with the correct credentials ID
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git', credentialsId: 'sj3cmu']]) // Replace 'github' with the correct credentials ID
                 }
             }
         }
