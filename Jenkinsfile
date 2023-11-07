@@ -1,27 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        SONAR_TOKEN = credentials('Petclinic-Analysis')
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the code from the Git repository
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git']]])
-            }
-        }
-
-        stage('Static Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube Server') {
-                    // Run static code analysis using SonarQube
-                    script {
-                        def scannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${env.SONAR_TOKEN}"
-                    }
-                }
             }
         }
 
