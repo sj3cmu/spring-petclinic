@@ -8,12 +8,6 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh './mvnw package -DskipTests' 
-            }
-        }
-
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -23,6 +17,12 @@ pipeline {
                     sh "${scannerScript}"
                     }
                 }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh './mvnw package -DskipTests' 
             }
         }
     }
