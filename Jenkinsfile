@@ -1,10 +1,18 @@
 pipeline {
     agent any
+
     environment {
         SONAR_TOKEN = credentials('petclinic_analysis')
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the Git repository
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sj3cmu/spring-petclinic.git']]])
+            }
+        }
+
         stage('Static Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube Server') {
@@ -19,10 +27,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    // Build the project (you may need to adjust the build command)
-                    sh 'mvn clean package' // Replace with your build command
-                }
+                // Build the project (you may need to adjust the build command)
+                sh 'mvn clean package' // Replace with your build command
             }
         }
 
@@ -30,7 +36,7 @@ pipeline {
             steps {
                 script {
                     // Execute the petclinic.jar (update the path as needed)
-                    sh 'java -jar /path/to/petclinic.jar'
+                    sh 'java -jar target/petclinic.jar' // Replace with your Java command
                 }
             }
         }
@@ -38,8 +44,9 @@ pipeline {
 
     post {
         success {
-            // Actions to perform on success (you can add your custom actions here)
-            echo 'The pipeline was successful!'
+            // Capture a screenshot of the welcome screen (you may need to install a headless browser tool)
+            sh 'screenshot-command -o welcome-screen.png' // Replace with the actual screenshot command
+            archiveArtifacts artifacts: 'welcome-screen.png', allowEmptyArchive: true
         }
         failure {
             // Actions to perform on failure (you can add your custom actions here)
