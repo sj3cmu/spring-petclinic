@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the project (you may need to adjust the build command)
-                sh 'mvn clean package' // Replace with your build command
+                sh './mvnw package' // Replace with your build command
             }
         }
 
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Execute the petclinic.jar (update the path as needed)
-                    sh 'java -jar target/petclinic.jar' // Replace with your Java command
+                    sh 'java -jar target/*.jar' // Replace with your Java command
                 }
             }
         }
