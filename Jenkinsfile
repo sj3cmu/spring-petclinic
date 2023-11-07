@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Execute the petclinic.jar (update the path as needed)
-                    sh 'java -jar target/*.jar' // Replace with your Java command
+                    sh 'java -jar -Dserver.port=8082 target/*.jar' // Replace with your Java command
                 }
             }
         }
