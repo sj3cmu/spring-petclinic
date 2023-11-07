@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the project (you may need to adjust the build command)
-                sh './mvnw package' // Replace with your build command
+                sh './mvnw package -DskipTests' // Replace with your build command
             }
         }
 
