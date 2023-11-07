@@ -6,28 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Check out the source code from your repository using GitHub credentials
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [
-                            [
-                                name: '*/main'
-                            ]
-                        ],
-                        userRemoteConfigs: [
-                            [
-                                url: 'https://github.com/sj3cmu/spring-petclinic',
-                                credentialsId: 'github-token' // Replace 'github-token' with the correct credentials ID
-                            ]
-                        ]
-                    ])
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
