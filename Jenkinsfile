@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         SONAR_TOKEN = credentials('petclinic_analysis')
-        GITHUB_CREDENTIALS = credentials('sj3cmu')
     }
 
     stages {
@@ -21,7 +20,7 @@ pipeline {
                         userRemoteConfigs: [
                             [
                                 url: 'https://github.com/sj3cmu/spring-petclinic.git',
-                                credentialsId: 'sj3cmu'
+                                credentialsId: 'github-token' // Replace 'github-token' with the correct credentials ID
                             ]
                         ]
                     ])
