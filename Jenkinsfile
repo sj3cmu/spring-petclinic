@@ -1,6 +1,5 @@
 pipeline {
     agent any
-Jenkinsfile
     environment {
         SONAR_TOKEN = credentials('petclinic_analysis')
     }
