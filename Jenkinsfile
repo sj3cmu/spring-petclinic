@@ -15,15 +15,6 @@ pipeline {
                 sh './mvnw package -DskipTests' // Replace with your build command
             }
         }
-
-        stage('Execute petclinic.jar') {
-            steps {
-                script {
-                    // Execute the petclinic.jar (update the path as needed)
-                    sh 'java -jar target/*.jar' // Replace with your Java command
-                }
-            }
-        }
     }
 
     post {
