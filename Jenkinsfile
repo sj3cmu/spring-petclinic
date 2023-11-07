@@ -19,7 +19,7 @@ pipeline {
                         ],
                         userRemoteConfigs: [
                             [
-                                url: 'https://github.com/sj3cmu/spring-petclinic.git',
+                                url: 'https://github.com/sj3cmu/spring-petclinic',
                                 credentialsId: 'github-token' // Replace 'github-token' with the correct credentials ID
                             ]
                         ]
