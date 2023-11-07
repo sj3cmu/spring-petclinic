@@ -48,10 +48,12 @@ pipeline {
 
     post {
         success {
-            // Notify or perform actions on success
+            // Actions to perform on success (you can add your custom actions here)
+            echo 'The pipeline was successful!'
         }
         failure {
-            // Notify or perform actions on failure
+            // Actions to perform on failure (you can add your custom actions here)
+            echo 'The pipeline failed!'
         }
     }
 }
