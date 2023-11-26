@@ -29,7 +29,7 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 script{
-                    sh 'ansible-playbook ${WORKSPACE}/deploy_petclinic.yml'
+                    sh 'ansible-playbook -i inventory.yml ${WORKSPACE}/deploy_petclinic.yml'
                 }
             }
         }
