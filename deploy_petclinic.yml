@@ -1,12 +1,12 @@
-- name: Deploy Petclinic
+- name: Deploy Petclinic to SonarQube container
   hosts: your_production_server
   become: true
 
   tasks:
-    - name: Copy JAR file
+    - name: Copy JAR file to SonarQube container
       copy:
         src: /var/jenkins_home/workspace/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar
         dest: /var/apps/spring-petclinic/spring-petclinic.jar
 
-    - name: Start Petclinic application
-      command: docker run -d -p 8081:8081 --name petclinic-container -v /var/apps/spring-petclinic:/app petclinic_home:latest
+    - name: Start Petclinic application on SonarQube container
+      command: docker exec -it assignment_1-sonarqube-1 java -jar /var/apps/spring-petclinic/spring-petclinic.jar
