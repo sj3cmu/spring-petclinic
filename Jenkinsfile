@@ -29,8 +29,6 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 script{
-                    sh 'sudo apt-get update'
-                    sh 'sudo apt-get install -y ansible'
                     sh 'ansible-playbook ${WORKSPACE}/deploy_petclinic.yml'
                 }
             }
