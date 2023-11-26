@@ -29,6 +29,7 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 script{
+                    sh 'apk add --no-cache ansible'
                     sh 'ansible-playbook ${WORKSPACE}/deploy_petclinic.yml'
                 }
             }
