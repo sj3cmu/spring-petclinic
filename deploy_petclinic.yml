@@ -1,5 +1,5 @@
 - name: Deploy Petclinic to SonarQube container
-  hosts: your_production_server
+  hosts: sonarqube
   become: true
 
   tasks:
