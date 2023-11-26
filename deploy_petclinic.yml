@@ -1,4 +1,5 @@
 - name: Deploy Petclinic to SonarQube container
+  become: yes
   hosts: localhost
   tasks:
     - name: Create destination directory
