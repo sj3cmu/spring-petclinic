@@ -1,0 +1,12 @@
+- name: Deploy Petclinic
+  hosts: your_production_server
+  become: true
+
+  tasks:
+    - name: Copy JAR file
+      copy:
+        src: /var/jenkins_home/workspace/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar
+        dest: /var/apps/spring-petclinic/spring-petclinic.jar
+
+    - name: Start Petclinic application
+      command: docker run -d -p 8081:8081 --name petclinic-container -v /var/apps/spring-petclinic:/app petclinic_home:latest

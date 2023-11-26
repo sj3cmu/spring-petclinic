@@ -25,6 +25,12 @@ pipeline {
                 sh './mvnw package -DskipTests' 
             }
         }
+
+        stage('Deploy with Ansible') {
+            steps {
+                sh 'ansible-playbook deploy_petclinic.yml'
+            }
+        }
     }
 
     post {
