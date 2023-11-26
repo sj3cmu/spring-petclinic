@@ -1,7 +1,5 @@
 - name: Deploy Petclinic to SonarQube container
   hosts: localhost
-  become: true
-
   tasks:
     - name: Copy JAR file to SonarQube container
       copy:
