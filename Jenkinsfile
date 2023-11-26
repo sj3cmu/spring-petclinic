@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh 'ansible-playbook deploy_petclinic.yml'
+                sh 'ansible-playbook ${WORKSPACE}/deploy_petclinic.yml'
             }
         }
     }
