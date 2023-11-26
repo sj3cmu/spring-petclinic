@@ -11,6 +11,7 @@
       copy:
         src: "{{ workspace }}/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
         dest: "{{ workspace }}/sonarqube_apps/spring-petclinic/spring-petclinic.jar"
+        remote_src: yes
 
     - name: Start Petclinic application on SonarQube container
       command: docker exec -it assignment_1-sonarqube-1 java -jar /var/apps/spring-petclinic/spring-petclinic.jar
