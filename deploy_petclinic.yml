@@ -4,13 +4,13 @@
   tasks:
     - name: Create destination directory
       file:
-        path: "{{ WORKSPACE }}/sonarqube_apps/spring-petclinic"
+        path: "{{ workspace }}/sonarqube_apps/spring-petclinic"
         state: directory
 
     - name: Copy JAR file to SonarQube container
       copy:
-        src: "{{ WORKSPACE }}/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
-        dest: "{{ WORKSPACE }}/sonarqube_apps/spring-petclinic/spring-petclinic.jar"
+        src: "{{ workspace }}/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
+        dest: "{{ workspace }}/sonarqube_apps/spring-petclinic/spring-petclinic.jar"
 
     - name: Start Petclinic application on SonarQube container
       command: docker exec -it assignment_1-sonarqube-1 java -jar /var/apps/spring-petclinic/spring-petclinic.jar

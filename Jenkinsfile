@@ -29,7 +29,12 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 script{
-                    sh 'ansible-playbook -i inventory.yml ${WORKSPACE}/deploy_petclinic.yml'
+                    // Define the extra variables
+                    def extraVars = "workspace=${WORKSPACE}"
+                    // Build the ansible-playbook command
+                    def ansibleCmd = "ansible-playbook -i inventory.yml ${WORKSPACE}/deploy_petclinic.yml --extra-vars '${extraVars}'"
+                    // Execute the command
+                    sh ansibleCmd
                 }
             }
         }
