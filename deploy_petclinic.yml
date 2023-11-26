@@ -1,6 +1,11 @@
 - name: Deploy Petclinic to SonarQube container
   hosts: localhost
   tasks:
+    - name: Create destination directory
+      file:
+        path: /var/apps/spring-petclinic
+        state: directory
+
     - name: Copy JAR file to SonarQube container
       copy:
         src: /var/jenkins_home/workspace/devops-spring-petclinic_main/target/spring-petclinic-3.1.0-SNAPSHOT.jar
