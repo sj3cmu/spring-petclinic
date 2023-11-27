@@ -13,7 +13,6 @@
       copy:
         src: "{{ workspace }}/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
         dest: "/home/ubuntu/apps/spring-petclinic.jar"
-      remote_src: yes
 
     - name: Start Petclinic application on EC2 instance
       command: java -jar "/home/ubuntu/apps/spring-petclinic.jar"
