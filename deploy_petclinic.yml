@@ -15,4 +15,4 @@
         dest: "/home/ubuntu/apps/spring-petclinic.jar"
 
     - name: Start Petclinic application on EC2 instance
-      command: "nohup java -jar \"/home/ubuntu/apps/spring-petclinic.jar\" > /dev/null 2>&1 & disown"
+      command: java -jar "/home/ubuntu/apps/spring-petclinic.jar"
