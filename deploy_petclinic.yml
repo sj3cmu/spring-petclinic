@@ -1,17 +1,19 @@
-- name: Deploy Petclinic to SonarQube container
-  hosts: localhost
+- name: Deploy Petclinic to EC2 instance
+  hosts: ec2
   gather_facts: false
+  remote_user: ubuntu
+  become: true
   tasks:
     - name: Create destination directory
       file:
-        path: "{{ workspace }}/sonarqube_apps/spring-petclinic"
+        path: "/home/ubuntu/apps"
         state: directory
 
-    - name: Copy JAR file to SonarQube container
+    - name: Copy JAR file to EC2 instance
       copy:
         src: "{{ workspace }}/target/spring-petclinic-3.1.0-SNAPSHOT.jar"
-        dest: "{{ workspace }}/sonarqube_apps/spring-petclinic/spring-petclinic.jar"
-        remote_src: yes
+        dest: "/home/ubuntu/apps/spring-petclinic.jar"
+      remote_src: yes
 
-    - name: Start Petclinic application on SonarQube container
-      command: docker exec -it assignment_1-sonarqube-1 java -jar /var/apps/spring-petclinic/spring-petclinic.jar
+    - name: Start Petclinic application on EC2 instance
+      command: java -jar "/home/ubuntu/apps/spring-petclinic.jar"
